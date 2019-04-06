@@ -1,0 +1,13 @@
+//服务层
+app.service('payService',function($http){
+	    	
+	//生成二维码
+	this.createNative=function () {
+		return $http.get("pay/createNative.do");
+    }
+
+    //调用查询支付状态接口
+    this.queryPayStatus=function (out_trade_no) {
+        return $http.get("pay/queryPayStatus.do?out_trade_no="+out_trade_no);
+    }
+});

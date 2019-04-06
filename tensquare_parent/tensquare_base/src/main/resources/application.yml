@@ -1,0 +1,20 @@
+server:
+  port: 9001
+spring:
+  application:
+    name: tensquare-base #指定服务名
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/tensquare_base?characterEncoding=utf-8
+    username: root
+    password: 123456
+  jpa:
+    database: MySQL
+    show-sql: true
+    generate-ddl: true
+eureka:
+  client:
+    serviceUrl: #Eureka客户端与Eureka服务端进行交互的地址
+      defaultZone: http://eureka6868.com:6868/eureka/,http://eureka6869.com:6869/eureka/,http://eureka6870.com:6870/eureka/
+  instance:
+    prefer-ip-address: true #把自己的ip地址报告给Eureka(远程需要,本地测试没有问题)

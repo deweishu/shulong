@@ -1,0 +1,9 @@
+ai:
+  #语料库汇总文本文件
+  wordLib: F:\workspace\sk\sz42\ai\article.txt
+  #语料库目录
+  dataDir: F:\workspace\sk\sz42\ai\crawler
+  #词向量模型文件(名字随便取)
+  vecModel: F:\workspace\sk\sz42\ai\article.vecmodel
+  #卷积神经网络模型
+  cnnModel: F:\workspace\sk\sz42\ai\article.cnnmodel
