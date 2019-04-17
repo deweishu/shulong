@@ -1,0 +1,64 @@
+group 'com.market'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    ext {
+        springBootVersion = '1.5.6.RELEASE'
+    }
+    repositories {
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public"}
+        jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+jar {
+    baseName = 'app-api'
+    version = '1.0.0'
+}
+
+sourceCompatibility = 1.8
+
+repositories {
+    maven { url "http://maven.aliyun.com/nexus/content/groups/public"}
+    maven { url "http://mvn.gt.igexin.com/nexus/content/repositories/releases/"}
+    jcenter()
+}
+
+dependencies {
+    compile project(':lib-common')
+    compile project(':lib-admin')
+    compile project(':lib-menu')
+    compile project(':lib-user')
+    compile project(':lib-app')
+    compile project(':lib-msg')
+    compile project(':lib-sms')
+    compile project(':lib-thrid-login')
+
+    compile('org.springframework.boot:spring-boot-starter')
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-freemarker")
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile("org.springframework.boot:spring-boot-starter-data-jpa")
+    compile("org.springframework.boot:spring-boot-starter-data-redis")
+    compile("org.springframework.boot:spring-boot-starter-websocket")
+    compile("org.springframework.boot:spring-boot-devtools")
+    compile("org.springframework.boot:spring-boot-starter-aop")
+
+    compile group: 'com.sun.jna', name: 'jna', version: '3.0.9'
+    compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.6.1'
+    compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.6.1'
+    compile("org.springframework.boot:spring-boot-starter-tomcat")
+
+    compile("mysql:mysql-connector-java")
+    compile("com.zaxxer:HikariCP:2.6.2")
+
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+}
+

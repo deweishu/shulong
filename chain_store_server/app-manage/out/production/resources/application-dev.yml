@@ -1,0 +1,74 @@
+spring:
+
+  http:
+    multipart:
+      enabled: true
+      max-file-size: 100Mb
+      max-request-size: 1000Mb
+
+  redis:
+    host: 120.78.171.181
+    port: 6379
+    database: 1
+    password: chain_store_redis_09-1
+
+  data:
+    elasticsearch:
+      cluster-nodes: 120.78.171.181:9301
+      cluster-name: chain_store
+
+
+  rabbitmq:
+    addresses: 120.78.171.181
+    port: 5672
+    publisher-confirms: true
+    virtual-host: /
+    username: admin
+    password: admin
+
+
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://rm-wz91md9eb99bf210xno.mysql.rds.aliyuncs.com:3306/chain_store?useUnicode=true&characterEncoding=UTF-8&useSSL=false&useAffectedRows=true
+    username: chain_store
+    password: nTPewbH7TMhBSCNr
+    driver-class-name: com.mysql.jdbc.Driver
+    hikari:
+      maximum-pool-size: 15
+
+  jpa:
+    show-sql: true
+
+  freemarker:
+    cache: false
+
+  oss:
+    accessId: LTAIc3oUI9V0c5h0
+    accessKey: ztSGWYr2CEcTOIN9VWTRYthRRmoqgS
+    endpoint: oss-cn-shenzhen.aliyuncs.com
+    bucket: chainstore
+    policyExpireTime: 30
+    dir: chain_store/
+
+  ## 是否关闭短信验证功能，开发环境不发送
+  verify:
+    code:
+      close: true
+## 推送信息配置
+  push:
+    appId: P5f2k30TSvADU3MJNraBf2
+    appKey: 0cLI63lkhq8Oql4bYSYKu9
+    masterSecret: ofpR3Ha52c8JJoLLR4gJt5
+    url: http://sdk.open.api.igexin.com/apiex.htm
+
+module:
+  domain:
+    static: https://chainstore.oss-cn-shenzhen.aliyuncs.com
+    main: http://localhost:8988
+    cookie: localhost
+
+
+logging:
+  level:
+    jia: DEBUG
+    ROOT: INFO

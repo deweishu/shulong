@@ -1,0 +1,59 @@
+spring:
+  redis:
+    host: 47.52.100.135
+    port: 6379
+    database: 2
+    password: chain_store_redis_09-1
+
+  data:
+    elasticsearch:
+      cluster-nodes: 47.52.100.135:9301
+      cluster-name: chain_store
+
+  rabbitmq:
+    addresses: 47.52.100.135
+    port: 5672
+    publisher-confirms: true
+    virtual-host: /
+    username: admin
+    password: admin
+
+
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://585b45643a27e.gz.cdb.myqcloud.com:4969/chain_store?useUnicode=true&characterEncoding=UTF-8&useSSL=false&useAffectedRows=true
+    username: chain_store
+    password: nTPewbH7TMhBSCNr
+    driver-class-name: com.mysql.jdbc.Driver
+    hikari:
+      maximum-pool-size: 15
+
+  jpa:
+    show-sql: true
+
+  freemarker:
+    cache: false
+
+  oss:
+    accessId: LTAIc3oUI9V0c5h0
+    accessKey: ztSGWYr2CEcTOIN9VWTRYthRRmoqgS
+    endpoint: oss-cn-shenzhen.aliyuncs.com
+    bucket: chainstore
+    policyExpireTime: 30
+    apkDir: apk/
+
+
+  verify:
+    code:
+      close: true
+
+module:
+  domain:
+    static: http://chainstore.oss-cn-shenzhen.aliyuncs.com
+    main: http://47.52.100.135:8989
+    cookie: 47.52.100.135
+
+logging:
+  level:
+    jia: DEBUG
+    ROOT: INFO
