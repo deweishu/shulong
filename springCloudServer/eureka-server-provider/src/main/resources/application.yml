@@ -1,0 +1,30 @@
+
+
+server:
+  port: 8081
+
+eureka:
+  instance:
+    instance-id: providerServer
+    #访问路径可以显示IP地址
+    prefer-ip-address: true
+
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+
+    #服务组测地址
+    serviceUrl:
+      defaultZone: http://localhost:9090/eureka/,http://localhost:9091/eureka/,http://localhost:9092/eureka/
+
+
+spring:
+  application:
+    name: eureka-server-provider
+
+
+info:
+  app.name: eureka-server-provider
+  company.name: www.dwshu.com
+  build.artifactId: ${project.artifactId}
+  build.version: ${project.version}

@@ -1,0 +1,24 @@
+
+spring:
+  application:
+    name: eureka-server
+
+server:
+  port: 9090
+
+eureka:
+  instance:
+    hostname: localhost
+
+  server:
+      #自动保护
+      enableSelfPreservation: false
+      #剔除时间
+      evictionIntervalTimerInMs: 4000
+
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+

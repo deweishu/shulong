@@ -1,0 +1,38 @@
+
+
+server:
+  port: 8082
+
+
+
+eureka:
+  instance:
+    instance-id: consumerServer
+    prefer-ip-address: true
+
+  client:
+#    register-with-eureka: true
+#    fetch-registry: true
+
+    #服务组测地址
+    serviceUrl:
+      defaultZone: http://localhost:9090/eureka/,http://localhost:9091/eureka/,http://localhost:9092/eureka/
+
+ribbon:
+  eureka:
+    enabled: true
+
+
+spring:
+  application:
+    name: ribbon-server-consumer
+
+
+
+info:
+  app.name: ribbon-server-consumer
+  company.name: www.dwshu.com
+  build.artifactId: ${project.artifactId}
+  build.version: ${project.version}
+
+

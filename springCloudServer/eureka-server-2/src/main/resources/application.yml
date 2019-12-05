@@ -1,0 +1,23 @@
+
+spring:
+  application:
+    name: eureka-server
+
+server:
+  port: 9092
+
+
+eureka:
+  environment: peer2
+  instance:
+    hostname: eurekaservice2
+
+  client:
+#    #向其他注册中兴注册自己（高可用注册中兴）
+#    register-with-eureka: false
+#    fetch-registry: false
+    serviceUrl:
+      defaultZone: http://eurekaservice1:9091/eureka
+
+
+
