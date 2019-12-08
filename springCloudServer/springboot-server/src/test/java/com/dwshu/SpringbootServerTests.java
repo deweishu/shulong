@@ -3,6 +3,7 @@ package com.dwshu;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.dwshu.base.ProducerRabbit;
 import com.dwshu.dao.EsUserRepository;
 import com.dwshu.pojo.EsUser;
 import com.dwshu.pojo.User;
@@ -13,10 +14,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.cglib.core.Local;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,13 +39,19 @@ public class SpringbootServerTests {
     @Autowired
     private EsUserRepository esUserRepository;
 
-    //测试创建索引库
+    //----------------------------------------elasticsearch 测试---------------------------------------------//
+
+    /**
+     * 测试创建索引库
+     */
     @Test
     public void createIndex() {
         elasticsearchTemplate.createIndex(EsUser.class);
     }
 
-    //往索引库里添加数据
+    /**
+     * 往索引库里添加数据
+     */
     @Test
     public void createType() {
         List<User> users = userServer.findAllByOrderById();
@@ -57,10 +67,14 @@ public class SpringbootServerTests {
     }
 
 
+
+    //----------------------------------------redis 测试---------------------------------------------//
     @Autowired
     private RedisTemplate redisTemplate;
 
-    //获取redis数据库里的数据
+    /**
+     * 获取redis数据库里的数据
+     */
     @Test
     public void getRedisData() {
         Map<String, Object> map = new HashMap<>();
@@ -89,5 +103,45 @@ public class SpringbootServerTests {
 
     }
 
+
+
+    //----------------------------------------rabbitMQ 测试---------------------------------------------//
+
+    @Autowired
+    ProducerRabbit producerRabbit;
+
+    /**
+     *  测试direct直接模式
+     */
+    @Test
+    public void sendDirectMsg(){
+        producerRabbit.sendDirectMsg("myQueue",String.valueOf(System.currentTimeMillis()));
+    }
+
+    /**
+     * 测试topic主题模式
+     */
+    @Test
+    public void senTopicMsg(){
+        producerRabbit.sendExchangeMsg("topic-exchange","myQueue", "这是我的第一个主题模式消息！");
+    }
+
+    /**
+     * 测试fanout分裂模式
+     */
+    @Test
+    public void senFanoutMsg(){
+        producerRabbit.sendExchangeMsg("fanout-exchange","myQueue.test", "这是我的第一个分裂模式消息！");
+    }
+
+    /**
+     * 测试header头模式
+     */
+    @Test
+    public void senHeaderMsg(){
+        Map<String,Object> map=new HashMap<>();
+        map.put("first","第一");
+        producerRabbit.sendHeaderMsg("headers-exchange","这是我的第一个头模式消息！",map);
+    }
 
 }
