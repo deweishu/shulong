@@ -53,6 +53,23 @@ spring:
         max-active: 8   # 如果赋值为-1，则表示不限制；如果pool已经分配了maxActive个lettuce实例，则此时pool的状态为exhausted(耗尽)。
         max-wait: -1    # 等待可用连接的最大时间，单位毫秒，默认值为-1，表示永不超时。如果超过等待时间，则直接抛出
 
+  #消息队列
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    cache:
+      connection:
+        #缓存连接模式，默认一个连接，多个channel
+        mode: channel
+        #多个连接，多个channel
+        #mode: connection
+
+    #当客户端使用AMQP协议连接RabbitMQ时,需要指定连接的virtual host;不指定则表示连默认的virtual host为/
+    #如 virtual-host: /test
+    virtual-host: /
+
 
 
   #当遇到同样名字的时候，是否允许覆盖注册
