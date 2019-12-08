@@ -5,3 +5,7 @@
 #springboot整合swagger2
     
 #springboot整合redis
+
+#springboot整合rabbitMQ
+    测试交换机四种模式的消息发送
+    rabbitMQ实现短信通知功能(---待实现)
