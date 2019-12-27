@@ -69,6 +69,21 @@ spring:
     #当客户端使用AMQP协议连接RabbitMQ时,需要指定连接的virtual host;不指定则表示连默认的virtual host为/
     #如 virtual-host: /test
     virtual-host: /
+    #连接超时，0：表示永不超时
+    connection-timeout: 5
+
+    #生产者发送确认
+    publisher-confirm-type: simple  #消息确认类型
+    publisher-returns: true  #生产者可以判断消息是否发送到了queue
+    #消费者自动确认
+    listener:
+      simple:
+        acknowledge-mode: manual
+        retry:
+          enabled: true   #消息重新发送
+          max-attempts: 5   #最大尝试重发次数
+
+
 
 
 

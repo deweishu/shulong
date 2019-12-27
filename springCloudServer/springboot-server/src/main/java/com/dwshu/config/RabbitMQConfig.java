@@ -17,9 +17,10 @@ import java.util.Map;
 public class RabbitMQConfig {
     //交换机-主题模式
     private static final String topicExchangeName = "topic-exchange";
-    //交换机-分裂模式
 
+    //交换机-分裂模式
     private static final String fanoutExchange = "fanout-exchange";
+
     //交换机-头模式
     private static final String headersExchange = "headers-exchange";
 
@@ -27,6 +28,10 @@ public class RabbitMQConfig {
     private static final String queueName = "myQueue";
 
     //申明队列
+    // name: 消息队列名称
+    // durable：是否持久化，默认true
+    // exclusive: 该消息队列是否只是在当前的connection生效，默认false
+    // autoDelete： 表示消息队列没有在使用时将被自动删除，默认false
     @Bean
     public Queue queue(){
         return new Queue("myQueue",false,true,true);

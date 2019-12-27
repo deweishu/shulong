@@ -17,14 +17,14 @@
     </properties>
 
     <!--子模块-->
-<!--    <modules>
+   <modules>
         <module>eureka-server</module>
         <module>eureka-server-1</module>
         <module>eureka-server-2</module>
         <module>eureka-server-provider</module>
         <module>ribbon-server-consumer</module>
         <module>springboot-server</module>
-    </modules>-->
+    </modules>
 
     <dependencies>
     </dependencies>

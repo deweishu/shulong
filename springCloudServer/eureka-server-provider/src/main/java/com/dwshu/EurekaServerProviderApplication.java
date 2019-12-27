@@ -6,7 +6,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @EnableSwagger2     //开启swagger2
-@EnableEurekaClient
+@EnableEurekaClient		//开启eureka客户端
 @SpringBootApplication
 public class EurekaServerProviderApplication {
 
