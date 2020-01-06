@@ -1,4 +1,4 @@
-package com.dwshu.dao;
+package com.dwshu.repository;
 
 import com.dwshu.pojo.User;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,6 +12,12 @@ import java.util.List;
  */
 public interface UserRepository extends JpaRepository<User, String>, JpaSpecificationExecutor<User> {
 
+    //登陆
+    User findByUsernameAndPassword(String username,String password);
+
     //查询所有用户信息
     List<User> findAllByOrderById();
+
+
+
 }

@@ -1,4 +1,4 @@
-package com.dwshu.dao;
+package com.dwshu.repository;
 
 import com.dwshu.pojo.EsUser;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;

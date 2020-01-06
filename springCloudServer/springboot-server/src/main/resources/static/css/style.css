@@ -1,0 +1,83 @@
+/*背景图片*/
+html, bodu {
+    background: url(../images/pigu.jpg) no-repeat 0px 0px;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+
+/*时钟*/
+.main_upper {
+    font-family: 'Share Tech Mono', monospace;
+    color: #ffffff;
+    text-align: center;
+    position: absolute;
+    left: 37%;
+    top: 3%;
+    color: #daf6ff;
+    text-shadow: 0 0 20px #0aafe6, 0 0 20px rgba(10, 175, 230, 0);
+}
+
+.main_upper .time {
+    font-size: 80px;
+    margin-top: -15px;
+}
+
+.main_upper .date {
+    font-size: 24px;
+}
+
+.main_upper .text {
+    letter-spacing: 0.1em;
+    font-size: 12px;
+    padding: 20px 0 0;
+}
+
+
+/*登陆框*/
+#login_form{
+    width: 250px;
+    height: 150px;
+    margin-top: 220px;
+    margin-left: 320px;
+
+    /*::before 伪类效果*/
+    position: relative;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px 1px #000;
+    /*color: #fff;*/
+    font-weight: lighter;
+    overflow: hidden;
+}
+
+#login_form::before{
+    content: '';
+    display: block;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: -20px;
+    filter: blur(20px);
+}
+
+#weixin{
+    margin-top: -306px;
+    margin-left: 800px;
+
+}
+
+
+
+#login_form input {
+    border: 0;
+    background-color: transparent;
+    color: #daf6ff;
+    width: 100%;
+    height: 50px;
+    font-size: 24px;
+
+}

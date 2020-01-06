@@ -84,6 +84,10 @@ spring:
           max-attempts: 5   #最大尝试重发次数
 
 
+  ## 微信开放平台的秘钥，做微信分享，登录使用
+  wechat:
+    appId: wxf7a0c2fb8f37ab2d   #测试appId
+    appSecret: bee7e6b60c0709b0fe3a3e1f92dede1d   #测试密钥
 
 
 

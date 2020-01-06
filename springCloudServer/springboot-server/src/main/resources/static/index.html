@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登陆</title>
+</head>
+<link href="css/style.css" rel="stylesheet">
+<script type="text/javascript" src="js/vue.min.js"></script>
+<script type="text/javascript" src="js/wxLogin.js"></script>
+
+<body>
+<div class="main">
+    <div class="main_upper">
+        <p class="date">{{ date }}</p>
+        <p class="time">{{ time }}</p>
+    </div>
+    <div class="main_middle">
+        <!--普通登陆-->
+        <form id="login_form" action="/login" method="post">
+            <input name="username" type="text" placeholder="用户名："/><br/>
+            <input name="password" type="password" placeholder="密码："/><br/>
+            <input type="submit"  value="登录"/>
+        </form>
+
+        <!--微信二维码-->
+        <div id="weixin"></div>
+    </div>
+    <div class="main_lower"></div>
+</div>
+</body>
+
+<script>
+    <!--时钟-->
+    var clock = new Vue({
+        el: '.main_upper',
+        data: {
+            time: '',
+            date: ''
+        }
+    });
+
+    var week = ['星期天', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+    var timerID = setInterval(updateTime, 1000);
+    updateTime();
+
+    function updateTime() {
+        var cd = new Date();
+        clock.time = zeroPadding(cd.getHours(), 2) + ':' + zeroPadding(cd.getMinutes(), 2) + ':' + zeroPadding(cd.getSeconds(), 2);
+        clock.date = zeroPadding(cd.getFullYear(), 4) + '-' + zeroPadding(cd.getMonth() + 1, 2) + '-' + zeroPadding(cd.getDate(), 2) + ' ' + week[cd.getDay()];
+    };
+
+    function zeroPadding(num, digit) {
+        var zero = '';
+        for (var i = 0; i < digit; i++) {
+            zero += '0';
+        }
+        return (zero + num).slice(-digit);
+    }
+
+</script>
+<script>
+    //微信扫描二维码获取code值
+    var obj=new WxLogin({
+        id:"weixin",
+        appid:"wxf7a0c2fb8f37ab2d", //没有自己的appid
+        scope:"snsapi_login",
+        redirect_uri:"http://www.dwshu.com/threeLogin" ,//回调函数
+        state: "STATE"
+    });
+
+</script>
+
+</html>
