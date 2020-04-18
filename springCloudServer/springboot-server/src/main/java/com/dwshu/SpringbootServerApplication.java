@@ -18,8 +18,8 @@ public class SpringbootServerApplication {
          * nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.elasticsearch.client.transport.TransportClient]: Factory method 'elasticsearchClient' threw exception;
          * nested exception is java.lang.IllegalStateException: availableProcessors is already set to [4], rejecting [4]
          */
-        //添加这个条代码解决上面异常
-        System.setProperty("es.set.netty.runtime.available.processors","false");
+        /*//添加这个条代码解决上面异常
+        System.setProperty("es.set.netty.runtime.available.processors","false");*/
 
         SpringApplication.run(SpringbootServerApplication.class, args);
     }

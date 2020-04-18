@@ -9,9 +9,9 @@ spring:
 
   #elasticsearch 配置信息
   data:
-    elasticsearch:
-      cluster-name: my-application
-      cluster-nodes: 127.0.0.1:9300
+#    elasticsearch:
+#      cluster-name: my-application
+#      cluster-nodes: 127.0.0.1:9300
 
   #数据库配置信息
   datasource:

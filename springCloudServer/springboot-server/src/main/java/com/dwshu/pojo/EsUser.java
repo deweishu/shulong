@@ -20,7 +20,7 @@ import java.io.Serializable;
  *  EsUser用于创建ES索引库
  */
 
-@Document(indexName = "esdemo",type = "users", shards = 1, replicas = 0)
+@Document(indexName = "esdemo",type = "user", shards = 5, replicas = 0)
 public class EsUser implements Serializable {
 
 
