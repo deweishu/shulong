@@ -34,8 +34,10 @@ public class RabbitMQConfig {
     // autoDelete： 表示消息队列没有在使用时将被自动删除，默认false
     @Bean
     public Queue queue(){
-        return new Queue("myQueue",false,true,true);
+        return new Queue("myQueue",false,true,false);
     }
+
+
 
     //申明topic交换机
     @Bean
@@ -50,6 +52,8 @@ public class RabbitMQConfig {
     }
 
 
+
+
     //申明fanout交换机
     @Bean
     public FanoutExchange fanoutExchange(){
@@ -60,6 +64,8 @@ public class RabbitMQConfig {
     public Binding fanoutBinding(Queue queue,FanoutExchange fanoutExchange){
         return BindingBuilder.bind(queue).to(fanoutExchange);
     }
+
+
 
 
     //申明headers交换机

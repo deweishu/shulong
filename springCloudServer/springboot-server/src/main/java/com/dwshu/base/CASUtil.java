@@ -1,4 +1,4 @@
-package com.dwshu.config;
+package com.dwshu.base;
 
 import org.jasig.cas.client.authentication.AttributePrincipal;
 import org.jasig.cas.client.util.AbstractCasFilter;

@@ -4,12 +4,19 @@ package com.dwshu;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.dwshu.base.JsoupHtmlUtil;
 import com.dwshu.base.ProducerRabbit;
+import com.dwshu.base.SslUtils;
+import com.dwshu.dto.GoodsDto;
 import com.dwshu.pojo.EsUser;
 import com.dwshu.pojo.User;
 import com.dwshu.service.UserServer;
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.common.xcontent.XContentType;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +28,7 @@ import org.springframework.data.elasticsearch.core.query.IndexQuery;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.net.URL;
 import java.util.*;
 
 @Slf4j
@@ -34,6 +42,16 @@ public class SpringbootServerTests {
     @Autowired
     private UserServer userServer;
 
+
+    @Test
+    public void getGoodsInfo() {
+        List<GoodsDto> goodsDtos=JsoupHtmlUtil.parsingReques("java");
+        for (GoodsDto goodsDto : goodsDtos) {
+            System.out.println(goodsDto);
+        }
+
+
+    }
 
 
     //----------------------------------------elasticsearch 测试---------------------------------------------//
@@ -54,17 +72,16 @@ public class SpringbootServerTests {
      * 往索引库里添加数据
      */
     @Test
-    public void insertInfo(){
+    public void insertInfo() {
 
     }
-
 
 
     /**
      * 往索引库里添加数据
      */
     @Test
-    public void saveInfo(){
+    public void saveInfo() {
         //id暂时手动插入以后该uuid,密码同样以后加密
         User user = new User(1, "dwshu", "123456", "13113613861", 0);
         User user1 = new User(2, "shulong", "123456", "13113613861", 0);
@@ -81,7 +98,7 @@ public class SpringbootServerTests {
             elasticsearchRestTemplate.index(query);
         }*/
         IndexQuery query = new IndexQuery();
-        List<User> list=new LinkedList<>();
+        List<User> list = new LinkedList<>();
         list.add(user);
         list.add(user1);
         list.add(user2);
@@ -93,7 +110,6 @@ public class SpringbootServerTests {
 
 
     }
-
 
 
     //----------------------------------------redis 测试---------------------------------------------//
@@ -132,52 +148,47 @@ public class SpringbootServerTests {
     }
 
 
-
     //----------------------------------------rabbitMQ 测试---------------------------------------------//
 
     @Autowired
     ProducerRabbit producerRabbit;
 
     /**
-     *  测试direct直接模式
+     * 测试direct直接模式
      */
     @Test
-    public void sendDirectMsg(){
-        producerRabbit.sendDirectMsg("myQueue",String.valueOf(System.currentTimeMillis()));
+    public void sendDirectMsg() {
+        producerRabbit.sendDirectMsg("myQueue", String.valueOf(System.currentTimeMillis()));
     }
 
     /**
      * 测试topic主题模式
      */
     @Test
-    public void senTopicMsg(){
-        producerRabbit.sendExchangeMsg("topic-exchange","myQueue", "这是我的第一个主题模式消息！");
+    public void senTopicMsg() {
+        producerRabbit.sendExchangeMsg("topic-exchange", "myQueue", "这是我的第一个主题模式消息！");
     }
 
     /**
      * 测试fanout分裂模式
      */
     @Test
-    public void senFanoutMsg(){
-        producerRabbit.sendExchangeMsg("fanout-exchange","myQueue.test", "这是我的第一个分裂模式消息！");
+    public void senFanoutMsg() {
+        producerRabbit.sendExchangeMsg("fanout-exchange", "myQueue.test", "这是我的第一个分裂模式消息！");
     }
 
     /**
      * 测试header头模式
      */
     @Test
-    public void senHeaderMsg(){
-        Map<String,Object> map=new HashMap<>();
-        map.put("first","第一");
-        producerRabbit.sendHeaderMsg("headers-exchange","这是我的第一个头模式消息！",map);
+    public void senHeaderMsg() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("first", "第一");
+        producerRabbit.sendHeaderMsg("headers-exchange", "这是我的第一个头模式消息！", map);
     }
 
 
-
-
     //----------------------------------------rabbitMQ 测试---------------------------------------------//
-
-
 
 
 }
